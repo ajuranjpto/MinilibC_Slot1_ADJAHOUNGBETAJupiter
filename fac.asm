@@ -15,6 +15,7 @@ loop:
     jmp loop
 
 done:
+    inc rcx
     mov al, BYTE[rdi + rcx]
     add al, 1
     movsx rax, al
