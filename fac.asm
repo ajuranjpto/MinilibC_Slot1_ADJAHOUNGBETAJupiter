@@ -1,25 +1,24 @@
-    section text
-    global my_add
+section .text
+global my_add
 
 my_add:
     xor rcx, rcx
-    cmp rsi, 0
-    je rsi_null
     mov al, BYTE[rsi + rcx]
     jmp loop
 
 loop:
+    cmp BYTE[rdi + rcx], 0
+    je null
     cmp BYTE[rdi + rcx], al
     je done
     inc rcx
     jmp loop
 
 done:
-    inc rcx
     mov al, BYTE[rdi + rcx]
     add al, 1
     movsx rax, al
     ret
 
-rsi_null:
+null:
     ret
